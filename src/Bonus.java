@@ -6,43 +6,39 @@ public class Bonus {
 
     public static void main(String[] args) {
 
-        // Onderstaande code is uitgecommentarieerd. Haal de code uit de comment (delete /* en */) om aan de slag te gaan met de bonus
-        // In de code staan op verschillende plekken comments tussen "/*...*/" als hint wat je moet doen
-
 
         HashSet<Integer> secretnumber = randomnumbergenerator();
         String stringnumber = setToStringConverter(secretnumber);
-        System.out.println(stringnumber);
-        feedback(/*vul hier het juiste argument in*/);
+//        System.out.println(stringnumber);
+        feedback(stringnumber);
 
     }
 
-    public static void/*moet dit returntype "void" zijn of wat anders?*/ randomnumbergenerator(/*Heeft deze methode nog parameter(s) nodig?*/){
-         /*
-        Vul hier de body van de methode in.
+    public static HashSet<Integer> randomnumbergenerator(){
 
-        Stappenplan:
-        - Maak een nieuwe variabele van type Random. (Tip: Zoek op internet hoe je Random kunt gebruiken)
-        - Maak een nieuwe variabele van type HashSet.
-        - Schrijf een while-loop om 4 random nummers aan de hashset toe te voegen
-        - return de hashset
-         */
+        java.util.Random rand = new java.util.Random();
+        HashSet<Integer> set = new HashSet<>();
+
+        while (set.size() < 4) {
+            set.add(rand.nextInt(10));
+        }
+        return set;
+
     }
 
-    public static void/*moet dit returntype "void" zijn of wat anders?*/ setToStringConverter(/*Heeft deze methode nog parameter(s) nodig?*/){
-        /*
-        Vul hier de body van de methode in.
+    public static String setToStringConverter(HashSet<Integer> secretnumber){
 
-        Stappenplan:
-        - Maak als eerst een String variabele met als waarde een lege String. (of gebruik een StringBuilder)
-        - Schrijf vervolgens een for-loop om de items in de hashset een voor een aan de String variabele toe te voegen.
-        - Return de (gevulde) String variabele
-         */
+        StringBuilder sb = new StringBuilder();
+
+        for (Integer i : secretnumber) {
+            sb.append(i);
+        }
+        return sb.toString();
     }
 
 
 
-    public static void/*moet dit "void" zijn of wat anders?*/ feedback(String stringnumber) {
+    public static void feedback(String stringnumber) {
         Scanner scanner = new Scanner(System.in);
         StringBuilder feedback = new StringBuilder();
         System.out.println("+ = juiste nummer op de juiste plek, O = juiste nummer verkeerde plek, X = verkeerde nummer");
