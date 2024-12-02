@@ -9,7 +9,7 @@ public class Bonus {
 
         HashSet<Integer> secretnumber = randomnumbergenerator();
         String stringnumber = setToStringConverter(secretnumber);
-//        System.out.println(stringnumber);
+//      System.out.println(stringnumber);
         feedback(stringnumber);
 
     }
@@ -41,12 +41,18 @@ public class Bonus {
     public static void feedback(String stringnumber) {
         Scanner scanner = new Scanner(System.in);
         StringBuilder feedback = new StringBuilder();
+        boolean play = false;
+
+        while (!play) {
+
         System.out.println("+ = juiste nummer op de juiste plek, O = juiste nummer verkeerde plek, X = verkeerde nummer");
         System.out.println("Doe een gok, Let op vul 4 getallen in.");
         String guess = scanner.nextLine();
         if (Objects.equals(guess, stringnumber)) {
             System.out.println("gefeliciteerd je hebt het goed");
-        } else {
+            play = true;
+        }
+        else {
             for (int i = 0; i < 4; i++) {
                 if (guess.substring(i, i + 1).equals(stringnumber.substring(i, i + 1))) {
                     feedback.append("+");
@@ -58,5 +64,9 @@ public class Bonus {
             }
         }
         System.out.println(feedback.toString());
+        feedback.setLength(0);
+        }
     }
 }
+// HashSet slaat geen gelijken nummers op naast elkaar en een HashMap wel, dan hoefte je er geen een nummer van te maken
+//  maar kon je deze nummers naast elkaar plaatsen in de HashMap.
